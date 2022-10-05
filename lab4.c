@@ -72,7 +72,6 @@ int readWavHeader(FILE* inFile, short *sampleSizePtr, int *numSamplesPtr, int *s
     short numChannels = 0;    /* number of audio channels */ 
     int sampleRate = 0;       /* Audio samples per second */
     short bitsPerSample = 0; /* Number of bits used for an audio sample. */
-    int audioSamples = 0; /* This is the number of bytes of data (audio samples) */
 
     /* first chunk is the RIFF chunk, let's read that info */  
     fread(chunkId, 1, 4, inFile);
@@ -125,7 +124,6 @@ int readWavHeader(FILE* inFile, short *sampleSizePtr, int *numSamplesPtr, int *s
 
     /* if we are here, then we must have the fmt chunk, now read that data */  
     fread(&chunkSize, 1, 4, inFile);
-    fread(&audioSamples, 1,  sizeof(audioSamples), inFile);
     /* print the information we got in the data chunk */
     printf("chunk: %s \n", chunkId);
 
